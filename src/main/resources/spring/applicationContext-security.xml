@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+- Sample namespace-based configuration
+-
+-->
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<debug />
+
+	<global-method-security pre-post-annotations="enabled" />
+    <!--  -->
+     <http pattern="/" security="none"/>
+     <http pattern="/login.jsp" security="none"/>
+     
+       
+    <http pattern="/BJUI/**" security="none"/>
+    <http pattern="/js/**" security="none"/>  
+     <http pattern="/images/**" security="none"/>
+    <http pattern="/upload/**" security="none"/>
+	<http pattern="/doc/**" security="none"/>
+	<http pattern="/ajax/**" security="none"/>
+	<http pattern="/datagrid/**" security="none"/>
+	<http pattern="/accessDenied.jsp" security="none"/>
+	
+
+
+	<http >
+	  
+		
+	    <intercept-url pattern="/**" access="authenticated" />
+		<intercept-url pattern="/secure/extreme/**" access="hasAuthority('supervisor')" />
+		<intercept-url pattern="/organization/**" access="authenticated" />
+		<access-denied-handler error-page="/accessDenied.jsp" />
+		<!--
+			Allow all other requests. In a real application you should
+			adopt a whitelisting approach where access is not allowed by default
+		-->
+	
+		<form-login login-page="/login.jsp" default-target-url="/index.do" authentication-failure-url="/login.jsp?login_error=1"/>
+		<logout logout-success-url="/login.jsp" delete-cookies="JSESSIONID"/>
+		
+		
+		<headers/>
+			<csrf request-matcher-ref="csrfSecurityRequestMatcher" />
+		<remember-me />
+<!--
+	Uncomment to enable X509 client authentication support
+		<x509 />
+-->
+		<!-- Uncomment to limit the number of sessions a user can have -->
+		<session-management invalid-session-url="/login.jsp">
+			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+		</session-management>
+
+	</http>
+
+	<!--
+	Usernames/Passwords are
+		rod/koala
+		dianne/emu
+		scott/wombat
+		peter/opal
+	-->
+	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder ref="encoder"/>
+			<!--  
+			<user-service>
+				<user name="rod" password="$2a$10$75pBjapg4Nl8Pzd.3JRnUe7PDJmk9qBGwNEJDAlA3V.dEJxcDKn5O" authorities="supervisor, user, teller" />
+				<user name="dianne" password="$2a$04$bCMEyxrdF/7sgfUiUJ6Ose2vh9DAMaVBldS1Bw2fhi1jgutZrr9zm" authorities="user,teller" />
+				<user name="scott" password="$2a$06$eChwvzAu3TSexnC3ynw4LOSw1qiEbtNItNeYv5uI40w1i3paoSfLu" authorities="user" />
+				<user name="peter" password="$2a$04$8.H8bCMROLF4CIgd7IpeQ.tcBXLP5w8iplO0n.kCIkISwrIgX28Ii" authorities="user" />
+			</user-service>
+			-->
+			<!--  select username, password, enabled from users where username = ?"  -->
+			<!--  select username, authority from authorities where username = ?  -->
+			<jdbc-user-service data-source-ref="dataSource" users-by-username-query="select username, password, true from user where username = ?" 
+			authorities-by-username-query="select u.username,url as authority from user u
+                                           left join position_authority pa on u.position_id=pa.position_id 
+                                           left join authority a on a.id=pa.authority_id where u.username = ?" 
+			
+			 />
+			   
+			
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>
