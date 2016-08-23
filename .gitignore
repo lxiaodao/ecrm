@@ -1,0 +1,20 @@
+/bin
+/target/classes
+/target/test-classes
+/target/m2e-wtp/web-resources/META-INF/maven
+*.class
+.springBeans
+/dist
+/tasklib
+*.log
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.war
+*.ear
+/target/
+/src/main/webapp/WEB-INF/lib
+/scaffold
+/logs
