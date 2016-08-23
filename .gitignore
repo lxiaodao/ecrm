@@ -1,7 +1,5 @@
 /bin
-/target/classes
-/target/test-classes
-/target/m2e-wtp/web-resources/META-INF/maven
+/target
 *.class
 .classpath
 .project
@@ -10,7 +8,8 @@
 .jsdtscope
 .springBeans
 /dist
-/tasklib
+/build
+
 *.log
 
 # Mobile Tools for Java (J2ME)
