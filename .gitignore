@@ -3,6 +3,11 @@
 /target/test-classes
 /target/m2e-wtp/web-resources/META-INF/maven
 *.class
+.classpath
+.project
+/.settings
+.DS_Store
+.jsdtscope
 .springBeans
 /dist
 /tasklib
