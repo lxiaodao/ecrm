@@ -17,7 +17,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
-
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +40,7 @@ public class GenerateHtmlScaffold {
 		//
 		String tableName=in.nextLine();
 		System.out.println("输入表名称是："+tableName);
-	     String databaseName = "crmdb";
+	     String databaseName = "c2m";
 	     String userName = "root";
 	     String password = "123456";
 	     String mySQLPort = "3306";
@@ -56,7 +56,7 @@ public class GenerateHtmlScaffold {
 	     Set<Column> columns=retrieveColumns(conn,databaseName,tableName);
          
 	     //生成edit jsp page
-	     generateEditPage(tableName,columns);
+	     //augenerateEditPage(tableName,columns);
 	     
 	     //生成sql语句
 	     generateSqlFile(tableName,columns);
@@ -66,9 +66,9 @@ public class GenerateHtmlScaffold {
          
 	}
 	
-	private static void generatePojoRowMapper(String tableName, Set<Column> columns) throws IOException {
+	private static void generatePojoRowMapper(String origintableName, Set<Column> columns) throws IOException {
 		//pojo java file
-		
+		String tableName=LOWER_CAMEL(origintableName);
 		String pojoname=tableName.substring(0, 1).toUpperCase()+tableName.substring(1);
 		 StringBuffer content=new StringBuffer();
 		   String hang=System.getProperty("line.separator");
@@ -83,39 +83,42 @@ public class GenerateHtmlScaffold {
 		  while(it.hasNext()){
 			 
 			  Column column=it.next();
-			  String setstring=".set"+column.name.substring(0, 1).toUpperCase()+column.name.substring(1);
+			  
+			  String propertyName=LOWER_CAMEL(column.name);
+			  String setstring=".set"+propertyName.substring(0, 1).toUpperCase()+propertyName.substring(1);
+			 
 			  if(column.type==java.sql.Types.INTEGER){
-				  content.append("private Integer "+column.name+";");
+				  content.append("private Integer "+propertyName+";");
 				  //	user.setId(rs.getInt("id"));
 				
 				  maprow.append(tableName+setstring+"(rs.getInt(\""+column.name+"\"));");
 				  
 			  }else if(column.type==java.sql.Types.VARCHAR){
-				  content.append("private String "+column.name+";");
+				  content.append("private String "+propertyName+";");
 				  //
 				  maprow.append(tableName+setstring+"(rs.getString(\""+column.name+"\"));");
 				  
 			  }else if(column.type==java.sql.Types.DOUBLE||column.type==java.sql.Types.FLOAT){
-				  content.append("private Double "+column.name+";");
+				  content.append("private Double "+propertyName+";");
 				  //
 				  maprow.append(tableName+setstring+"(rs.getDouble(\""+column.name+"\"));");
 			  }else if(column.type==java.sql.Types.DATE){
-				  content.append("private Date "+column.name+";");
+				  content.append("private Date "+propertyName+";");
 				  //
 				  maprow.append(tableName+setstring+"(rs.getDate(\""+column.name+"\"));");
 			  }else if(column.type==java.sql.Types.DECIMAL){
-				  content.append("private BigDecimal "+column.name+";");
+				  content.append("private BigDecimal "+propertyName+";");
 				  //getBigDecimal
 				  maprow.append(tableName+setstring+"(rs.getBigDecimal(\""+column.name+"\"));");
 			  }else if(column.type==java.sql.Types.BOOLEAN){
-				  content.append("private boolean "+column.name+";");
+				  content.append("private boolean "+propertyName+";");
 				  //getBoolean
 				  maprow.append(tableName+setstring+"(rs.getBoolean(\""+column.name+"\"));");
 			  }
 			  
 			  else{
 				  //其它类型都生成String字段，然后修改
-				  content.append("private String "+column.name+";");
+				  content.append("private String "+propertyName+";");
 				  //
 				  maprow.append(tableName+setstring+"(rs.getString(\""+column.name+"\"));");
 			  }
@@ -133,7 +136,7 @@ public class GenerateHtmlScaffold {
 		 //生成文件
 		 FileOutputStream outstream=null;
 			
-	       String file=templatePath(tableName)+"/"+tableName+"/"+pojoname+".java";
+	       String file=templatePath(tableName)+"/"+origintableName+"/"+pojoname+".java";
 	       File outFile=new File(file);
 			try {
 	        if(!outFile.exists()){        	
@@ -154,6 +157,24 @@ public class GenerateHtmlScaffold {
 		
 		
 	}
+	//小驼峰
+	private static String LOWER_CAMEL(String name) {
+		StringBuffer buff=new StringBuffer();
+		if(name.contains("_")){
+			String[] arr=name.split("_");
+			for(int i=0;i<arr.length;i++){
+				if(i==0){
+				   buff.append(arr[i]);
+				}else{
+					//第一字母大写
+					String part=arr[i].substring(0, 1).toUpperCase()+arr[i].substring(1);
+					buff.append(part);
+				}
+			}
+		}
+		return buff.length()==0?name:buff.toString();
+	}
+
 	//生成文件存放目录，
 	private static String templatePath(String tableName){
 		  //

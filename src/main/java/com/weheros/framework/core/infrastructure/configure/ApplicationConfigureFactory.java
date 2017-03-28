@@ -31,7 +31,7 @@ public class ApplicationConfigureFactory {
 	}
 	
 	enum AppConfigureType{
-		FDFS,SOLR,MONGO,PUSH
+		FDFS,SOLR,MONGO,PUSH,UPLOAD
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -43,6 +43,8 @@ public class ApplicationConfigureFactory {
 			type=AppConfigureType.SOLR;
 		}else if(aclass == PushConfigure.class){
 			type=AppConfigureType.PUSH;
+		}else if (aclass == UploadConfigure.class){
+			type=AppConfigureType.UPLOAD;
 		}
 		return (T) ApplicationConfigureFactory.buildAppConfigure(type);		
 	}
@@ -135,6 +137,24 @@ public class ApplicationConfigureFactory {
 					field.set(configure,value);
 					
 					appconfigures.put(AppConfigureType.PUSH, configure);
+				}
+				
+			}else if(strkey.startsWith("uplo")){
+				if(!appconfigures.containsKey(AppConfigureType.UPLOAD)){
+					AppConfigure configure=new UploadConfigure();
+					Field field=configure.getClass().getDeclaredField(strkey.substring(5));
+					field.setAccessible(true);
+					Object value=getExactTypeValue(field,PropertiesService.takeProperties(PropertiesService.PROPS_NAME_APP).get(key));
+					field.set(configure,value);
+					appconfigures.put(AppConfigureType.UPLOAD, configure);
+				}else{
+					AppConfigure configure=appconfigures.get(AppConfigureType.UPLOAD);
+					Field field=configure.getClass().getDeclaredField(strkey.substring(5));
+					field.setAccessible(true);
+					Object value=getExactTypeValue(field,PropertiesService.takeProperties(PropertiesService.PROPS_NAME_APP).get(key));
+					field.set(configure,value);
+					
+					appconfigures.put(AppConfigureType.UPLOAD, configure);
 				}
 				
 			}else{

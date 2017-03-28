@@ -1,5 +1,6 @@
 package com.weheros.framework.core.utils;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 
 import org.junit.Test;
@@ -23,5 +24,17 @@ public class ReflectTest {
 			}
 		}		
 	}
+	
+	@Test
+	public void testWords2() throws IOException {
+	
+		String[] arr="挑战不可能---第---二---季".split("---");
+		System.out.println(arr[0]);
+		for(String string:arr){
+			//System.out.println(string);
+		}
+	}
+	
+	
 
 }

@@ -22,12 +22,11 @@
 
 
 	
-
-	<description>Spring公共配置文件 </description>
+    <description>Spring公共配置文件 </description>
 	
 	<!-- 使用annotation 自动注册bean,并保证@Required,@Autowired的属性被注入 -->
 	
-    <context:component-scan base-package="com.billioncube,com.weheros" />
+    <context:component-scan base-package="com.billioncube,com.weheros,com.handsight" />
 	<cache:annotation-driven /> 
 	<!-- All Log use self4j -->
 	<bean id="julOverSlf4jProcessor" class="com.weheros.framework.core.utils.JulOverSlf4jProcessor" />
@@ -119,6 +118,10 @@
 		<aop:advisor
 			pointcut="execution(* com.weheros.infrastructure.datasystem..*.*(..))"
 			advice-ref="txAdvice" />
+			<aop:advisor
+			pointcut="execution(* com.handsight.ad..*.*(..))"
+			advice-ref="txAdvice" />
+			
 
 	</aop:config>
 
@@ -130,6 +133,7 @@
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="*insert*" rollback-for="Exception" />
+			<tx:method name="*create*" rollback-for="Exception" />
 			<tx:method name="*save*" rollback-for="Exception" />
 			<tx:method name="*update*" rollback-for="Exception" />
 			<tx:method name="*delete*" rollback-for="Exception" />
@@ -139,26 +143,16 @@
 
 	<!-- ============================== MongoDB configuration =========================================== -->
     
-    <!-- 
-	<mongo:mongo id="replicaSetMongo" replica-set="${mongo.replicaSetSevers}">
-		<mongo:client-options connections-per-host="${mongo.connectionsPerHost}"
-			threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"
-			connect-timeout="${mongo.connectTimeout}" max-wait-time="${mongo.maxWaitTime}"
-			auto-connect-retry="${mongo.autoConnectRetry}" socket-keep-alive="${mongo.socketKeepAlive}"
-			socket-timeout="${mongo.socketTimeout}" slave-ok="${mongo.slaveOk}"
-			write-number="1" write-timeout="0" write-fsync="true" />
-			
-	</mongo:mongo>
-	 -->
+   
 	
-	
-       <mongo:mongo id="replicaSetMongo" replica-set="${mongo.replicaSetSevers}" />
+	<!--  --> 
+    <mongo:mongo id="replicaSetMongo" replica-set="${mongo.replicaSetSevers}" />
 
 	<mongo:db-factory dbname="${mongo.dbname}" mongo-ref="replicaSetMongo" />
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
-	</bean>
-
+	</bean> 
+	
 	<!-- =================== redis configuration ================================= -->
 
 	<bean id="jedisConnFactory"
@@ -178,6 +172,7 @@
     </bean>
     
      <bean id="csrfSecurityRequestMatcher" class="com.weheros.framework.core.security.csrf.CsrfSecurityRequestMatcher"  />
+  
   
 	
 </beans>

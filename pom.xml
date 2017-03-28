@@ -265,7 +265,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
-			<version>1.8.4.RELEASE</version>
+			<version>1.8.6.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -277,7 +277,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.10</version>
+			<version>4.12</version>
 		</dependency>
 
 
@@ -314,6 +314,8 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>3.0.1</version>
 		</dependency>
+		
+		
 
 
 		<!-- -->
@@ -343,7 +345,7 @@
 		
 
 	
-		
+		<!-- -->
 		<dependency>
 		  <groupId>org.csource</groupId>
 		  <artifactId>fastdfsclient</artifactId>
@@ -351,13 +353,13 @@
 		</dependency>
 		
 		
-		<!--  
+		<!-- 
 		<dependency>
 		    <groupId>com.github.tobato</groupId>
 		    <artifactId>fastdfs-client</artifactId>
 		    <version>1.25.1-RELEASE</version>
 		</dependency>
-		-->
+		 -->
 		
 
 		
@@ -368,7 +370,6 @@
 		  <version>1.0</version>
 		</dependency>
 		-->
-		
 		<dependency>
 		    <groupId>javax.activation</groupId>
 		    <artifactId>activation</artifactId>
@@ -467,6 +468,8 @@
 			<artifactId>spring-security-acl</artifactId>
 			<version>${springsecurity.version}</version>
 		</dependency>
+		
+		
 		
 	</dependencies>
 

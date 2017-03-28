@@ -12,11 +12,22 @@
 <body>
 <h3>File Upload:</h3>
 Select a file to upload: <br />
-<form action="${ctx}/upload/uploadMultiplePictures.do" method="post"  enctype="multipart/form-data">
-file1<input type="file" name="file" size="50" />
-file2<input type="file" name="file" size="50" />
+
+<!--  
+<form action="${ctx}/upload/video.do" method="post"  enctype="multipart/form-data">
+file1<input type="file" name="filename" size="50"  />
+videoName<input type="text" name="videoName" />
 <br />
 <input type="submit" value="Upload File" />
+</form>
+-->
+<form action="${ctx}/upload/uploadMultipleFiles.do" method="post"  enctype="multipart/form-data">
+
+file1<input type="file" name="filename"   />
+id<input type="text" name="id" />
+<br />
+<input type="submit" value="Upload File" />
+
 </form>
 </body>
 </html>

@@ -87,5 +87,21 @@ public class SimpleController extends AbstractController {
 	}
 	
 	
+	@RequestMapping(value="simplepost",method = RequestMethod.GET)	
+	public String topost(ModelMap model){
+		
+	
+		
+		return "simple/post";
+	}
+	@RequestMapping(value="testPost",method = RequestMethod.POST)	
+	@ResponseBody
+	public Message testPost(HttpServletRequest request){
+		
+	    		
+		return new Message("8888","Test Post success!");
+	}
+	
+	
 	
 }

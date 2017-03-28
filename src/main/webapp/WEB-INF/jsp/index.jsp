@@ -151,9 +151,9 @@ $(function(){
 						</li>
                     </ul>
                 </li>
-                <!-- 
-                <li><a href="index.html" title="切换为列表导航(窄版)" style="background-color:#ff7b61;">列表导航栏(窄版)</a></li>
-                 -->
+                <!-- -->
+                <li><a href="${ctx}/index_tree.html?${_csrf.parameterName}=${_csrf.token}" title="切换为列表导航(窄版)" style="background-color:#ff7b61;">列表导航栏(窄版)</a></li>
+                
                 
                 <li class="dropdown"><a href="#" class="dropdown-toggle theme blue" data-toggle="dropdown" title="切换皮肤"><i class="fa fa-tree"></i></a>
                     <ul class="dropdown-menu" role="menu" id="bjui-themes">
@@ -207,7 +207,7 @@ $(function(){
                     <div id="bjui-collapse0" class="panel-collapse panelContent collapse in">
                         <div class="panel-body" >
                             <ul id="bjui-tree2" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true">
-				 														  							 <li data-id="12" data-pid="2" data-url="index.php/home/mygo/index" data-tabid="mygo/index">我的去向</li>
+				 														  							 <li data-id="12" data-pid="2" data-url="${ctx}/upload/uploadFile.jsp?${_csrf.parameterName}=${_csrf.token}" data-tabid="mygo/index">上传文件</li>
 								     								  							      								    <li data-id="33" data-pid="2" data-url="index.php/home/mygos/index" data-tabid="mygos/index">员工去向</li>
 								     								  							      								    <li data-id="8" data-pid="2" data-url="index.php/home/mytask/index" data-tabid="mytask/index">我的任务</li>
 								     								  							      								    <li data-id="28" data-pid="2" data-url="index.php/home/task/index" data-tabid="task/index">指派任务</li>

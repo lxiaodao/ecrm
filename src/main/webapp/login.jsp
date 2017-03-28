@@ -140,6 +140,7 @@ function choose_bg() {
            
            
     		<form action="<c:url value='login'/>" id="login_form" method="post">
+
                
              
     			<div class="form-group">
@@ -161,7 +162,9 @@ function choose_bg() {
     				<input type="submit" id="login_ok" value="&nbsp;登&nbsp;录&nbsp;" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;
     				<input type="reset" value="&nbsp;重&nbsp;置&nbsp;" class="btn btn-default btn-lg">
     			</div>
+    			<!--  
     			
+    			 -->
     			 <input type="hidden" name="<c:out value="${_csrf.parameterName}"/>" value="<c:out value="${_csrf.token}"/>"/>
     		</form>
         </div>

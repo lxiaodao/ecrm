@@ -45,7 +45,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/framework-servlet.xml","classpath*:/spring/applicationContext.xml" })
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/ecrm-servlet.xml","classpath*:/spring/applicationContext.xml" })
 public abstract class AnnotationJUnitTest {
 	protected Logger log = Logger.getLogger(getClass()); 
 	

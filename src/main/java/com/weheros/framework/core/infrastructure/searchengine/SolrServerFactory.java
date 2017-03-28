@@ -33,7 +33,7 @@ import com.weheros.framework.core.infrastructure.configure.SolrConfigure;
  * @date 2013年10月31日 下午2:55:15
  * 
  */
-@Component("solrServerFactory")
+//@Component("solrServerFactory")
 final class SolrServerFactory {
     
 	protected static Logger log = LoggerFactory.getLogger(SolrServerFactory.class);

@@ -4,7 +4,10 @@
 	
 package com.weheros.framework.core.upload.front;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,7 +62,9 @@ public class UploadFileController {
 	    public @ResponseBody
 	    Message uploadMultipleFileHandler(HttpServletRequest request, HttpServletResponse response,	
 	    		
-	    		@RequestParam("file") MultipartFile[] files) throws IOException {		
+	    		@RequestParam("file") MultipartFile[] files) throws IOException {	
+		 
+	
 		 
 		 List<SourceFile> sources= uploadService.upload(files);		
 		Message message = new Message(Message.VISIT_SUCCESS,
@@ -83,6 +89,13 @@ public class UploadFileController {
 
 		return message;
 		
+	 }
+	 @RequestMapping(value="/upload/toupload",method = RequestMethod.GET)	
+	 public String toupload(ModelMap model){
+			
+		
+			
+			return "upload/upload";
 	 }
 
 }
