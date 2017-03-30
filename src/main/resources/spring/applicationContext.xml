@@ -148,7 +148,8 @@
 	<!--  --> 
     <mongo:mongo id="replicaSetMongo" replica-set="${mongo.replicaSetSevers}" />
 
-	<mongo:db-factory dbname="${mongo.dbname}" mongo-ref="replicaSetMongo" />
+	<!--  mongo:db-factory dbname="${mongo.dbname}" mongo-ref="replicaSetMongo" /> -->
+	<mongo:db-factory dbname="${mongo.dbname}" mongo-ref="replicaSetMongo" write-concern="ACKNOWLEDGED" />
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean> 
