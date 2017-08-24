@@ -109,7 +109,7 @@
 	<!-- 事务管理器配置,多数据源JTA事务 WebLogicJtaTransactionManager -->
 	<!-- <bean id="jtaTransactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"/> -->
 	<!-- 使用annotation定义事务 -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:annotation-driven transaction-manager="transactionManager"  />
 	<!--=================AOP trasction controll and send Mail=============== -->
 	<aop:config>
 		<!-- This definition creates auto-proxy infrastructure based on the given 

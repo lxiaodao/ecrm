@@ -312,7 +312,7 @@
 		<dependency>
 			<groupId>commons-httpclient</groupId>
 			<artifactId>commons-httpclient</artifactId>
-			<version>3.0.1</version>
+			<version>3.1</version>
 		</dependency>
 		
 		
@@ -346,10 +346,10 @@
 
 	
 		<!-- -->
-		<dependency>
-		  <groupId>org.csource</groupId>
-		  <artifactId>fastdfsclient</artifactId>
-		  <version>1.0</version>
+	<dependency>
+			<groupId>fastdfs_client</groupId>
+			<artifactId>fastdfs_client</artifactId>
+			<version>1.25</version>
 		</dependency>
 		
 		
@@ -468,6 +468,33 @@
 			<artifactId>spring-security-acl</artifactId>
 			<version>${springsecurity.version}</version>
 		</dependency>
+		
+		
+		<dependency>
+		  <groupId>com.google.zxing</groupId>
+		  <artifactId>core</artifactId>
+		  <version>3.3.0</version>
+		</dependency>
+		
+		 <dependency>
+
+	            <groupId>com.itextpdf</groupId>
+
+	            <artifactId>itextpdf</artifactId>
+
+	            <version>5.5.6</version>
+
+	        </dependency>
+
+	        <dependency>
+
+	            <groupId>org.bouncycastle</groupId>
+
+	            <artifactId>bcprov-jdk15on</artifactId>
+
+	            <version>1.52</version>
+
+	        </dependency>
 		
 		
 		

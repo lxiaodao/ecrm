@@ -19,8 +19,8 @@
      <http pattern="/" security="none"/>
      <http pattern="/login.jsp" security="none"/>
     
-       
     
+    <http pattern="/simple/**" security="none"/>
     
     <http pattern="/BJUI/**" security="none"/>
     <http pattern="/js/**" security="none"/>  
@@ -35,8 +35,10 @@
 
 	<http >
 	  
-		<!-- <intercept-url pattern="/login" access="ROLE_ANONYMOUS" /> -->
+		<!--  
 	    <intercept-url pattern="/**" access="authenticated" />
+	     -->
+	   
 	    
 		<intercept-url pattern="/secure/extreme/**" access="hasAuthority('supervisor')" />
 		
@@ -56,7 +58,7 @@
 		<headers/>
 		<!-- request-matcher-ref="csrfSecurityRequestMatcher" -->
 			<csrf request-matcher-ref="csrfSecurityRequestMatcher" />
-			
+		
 		<remember-me />
 <!--
 	Uncomment to enable X509 client authentication support
