@@ -331,12 +331,7 @@
 		</dependency>
 
 		<!-- add hand by chenlong begin 2016-3-23 -->
-		<!--  
-		<dependency>
-		  <groupId>javax.mail</groupId>
-		  <artifactId>javaxmail</artifactId>
-		  <version>3.1</version>
-		</dependency> -->
+		
 		<dependency>
 		    <groupId>javax.mail</groupId>
 		    <artifactId>mail</artifactId>
@@ -345,31 +340,12 @@
 		
 
 	
-		<!-- -->
-	<dependency>
-			<groupId>fastdfs_client</groupId>
-			<artifactId>fastdfs_client</artifactId>
-			<version>1.25</version>
-		</dependency>
+	
 		
-		
-		<!-- 
-		<dependency>
-		    <groupId>com.github.tobato</groupId>
-		    <artifactId>fastdfs-client</artifactId>
-		    <version>1.25.1-RELEASE</version>
-		</dependency>
-		 -->
+		<!--  -->
+	
 		
 
-		
-		<!--  
-		<dependency>
-		  <groupId>com.sun.activation</groupId>
-		  <artifactId>activation-1.0</artifactId>
-		  <version>1.0</version>
-		</dependency>
-		-->
 		<dependency>
 		    <groupId>javax.activation</groupId>
 		    <artifactId>activation</artifactId>
