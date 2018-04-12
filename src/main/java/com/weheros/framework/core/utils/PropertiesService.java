@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.weheros.framework.core.log.LogService;
+import org.apache.log4j.Logger;
+
+
 
 /**
  * Load the properties file.
@@ -19,7 +21,7 @@ import com.weheros.framework.core.log.LogService;
  */
 public class PropertiesService
 {
-    
+	private static final Logger LOG = Logger.getLogger(PropertiesService.class);
     public final static String PROPS_NAME_APP = "app";
     
     private static Properties appProps = new Properties();
@@ -36,7 +38,7 @@ public class PropertiesService
         catch (IOException e)
         {
             
-            LogService.error(PropertiesService.class, "---load the properties " + PROPS_PATH_APP + " fiel fail.---");
+            LOG.error("---load the properties " + PROPS_PATH_APP + " fiel fail.---");
         }
     }
     

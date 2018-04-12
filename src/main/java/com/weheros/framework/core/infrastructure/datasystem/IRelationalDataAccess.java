@@ -20,8 +20,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 public interface IRelationalDataAccess extends IDataSystemAccess {
 	
-	public JdbcTemplate getJdbcTemplate();
-	
+
    /**
      * 新增
      * 

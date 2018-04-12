@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
  *
  */
 //@ContextConfiguration(locations = { "/applicationContext.xml","/applicationContext-aop.xml" })
-@ContextConfiguration(locations = { "classpath*:*/applicationContext.xml" })
+@ContextConfiguration(locations = { "classpath:spring/applicationContext.xml" })
 public abstract class GenericJunitDataInDBTest extends AbstractJUnit4SpringContextTests{
 	
 }
